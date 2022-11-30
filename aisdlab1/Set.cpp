@@ -1,0 +1,183 @@
+﻿#include "Set.h"
+#include <iostream>
+
+Set::Set(const Set& second) 
+{
+	size = second.size;
+	arr = second.arr;
+}
+
+Set::~Set() {
+	if (!arr)
+		delete[] arr;
+}
+
+
+int Set::operator[](const int index) 
+{
+	if (!arr)
+		throw "arr == nullptr";
+	if (index > size - 1 || index < 0)
+		throw "invalide index";
+	return arr[index];
+}
+
+
+Set Set::operator+(const Set& second) 
+{
+	Set res;
+	res.arr = new int[size + second.size];
+	res.size = 0;
+	for (int i = 0; i < size; i++) {
+		res.arr[i] = arr[i];
+		res.size++;
+	}
+	for (int i = 0; i < second.size; i++) 
+	{
+		if (check_num(second.arr[i]) == false)
+		{
+			res.arr[res.size] = second.arr[i];
+			res.size++;
+		}
+	}
+	return res;
+}
+
+
+Set Set::operator-(const Set& second)
+{
+	Set res;
+	res.arr = new int[size];
+	res.size = 0;
+	bool flag = false;
+	for (int i = 0; i < size; i++) 
+	{
+		flag = false;
+		for (int j = 0; j < second.size; j++) 
+		{
+			if (arr[i] == second.arr[j])
+			{
+				flag = true;
+				break;
+			}
+		}
+		if (flag == false)
+		{
+			res.arr[res.size] = arr[i];
+			res.size++;
+		}
+	}
+	return res;
+}
+
+Set& Set::operator+(int num) 
+{
+	if (!arr)
+	{
+		arr = new int[capacity];
+		arr[0] = num;
+		size++;
+	}
+	if (check_num(num) == false)
+	{
+		int* arr_n = new int[size + 1];
+		for (int i = 0; i < size; i++) 
+		{
+			arr_n[i] = arr[i];
+		}
+		arr_n[size] = num;
+		delete[] arr;
+		arr = arr_n;
+		size++;
+	}
+	return *this;
+}
+
+Set& Set::operator-(int num)
+{
+	if (check_num(num) == false)
+		throw "Set have not got this num";
+	for (int i = 0; i < size; i++) {
+		if (arr[i] == num)
+		{
+			for (int j = i; j < size - 1; j++) 
+			{
+				arr[j] = arr[j + 1];
+			}
+			size--;
+			break;
+		}
+	}
+	return *this;
+}
+
+
+
+bool Set::check_count(const Set& second) 
+{
+	if (!arr)
+		throw "arr == nullptr";
+	bool flag = false;
+	for (int i = 0; i < size; i++)
+	{
+		flag = false;
+		for (int j = 0; j < second.size; j++)
+		{
+			if (arr[i] == second.arr[j])
+				flag = true;
+		}
+		if (flag == false)
+			return false;
+	}
+	return true;
+}
+
+bool Set::operator==(const Set& second)
+{
+	if (second.size != size)
+		return false;
+	else
+	{
+		bool flag = true;
+		for (int i = 0; i < size; i++)
+		{
+			if (arr[i] != second.arr[i])
+				flag = false;
+		}
+		return flag;
+	}
+}
+
+bool Set::operator!=(const Set& second)
+{
+	if (second.size != size)
+		return true;
+	else
+	{
+		for (int i = 0; i < size; i++)
+		{
+			if (arr[i] != second.arr[i])
+				return true;
+		}
+		return false;
+	}
+}
+
+bool Set::check_num(int num)
+{
+	if (!arr)
+		throw "arr == nullptr in check_num";
+	for (int i = 0; i < size; i++) {
+		if (num == arr[i])
+			return true;
+	}
+	return false;
+}
+
+std::ostream& operator<<(std::ostream& s, const Set& set)
+{
+	for (int i = 0; i < set.size; i++) {
+		s << set.arr[i] << " ";
+	}
+	return s;
+}
