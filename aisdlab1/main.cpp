@@ -20,6 +20,8 @@ int main()
 		std::cout << "8 - -=(removing a number from a 2nd set)\n";
 		std::cout << "9- get element of 1st set by index";
 		std::cout << "10- get element of 2nd set by index";
+		std::cout << "9- get element of 1st set by index\n";
+		std::cout << "10- get element of 2nd set by index\n";
 		std::cout << "11 - calculating the intersection\n";
 		std::cout << "12 - checking for the presence of a number in the 1st set\n";
 		std::cout << "13 - checking for the presence of a number in the 2dn set\n";
@@ -135,4 +137,5 @@ int main()
 			system("pause");
 		}
 	}while (choise != 17);
+		
 }
