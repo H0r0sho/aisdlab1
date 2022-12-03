@@ -22,7 +22,8 @@ int Set::operator[](const int index)
 		throw "invalide index";
 	return arr[index];
 }
-Set Set::operator+(const Set& second)
+
+Set Set::operator+(const Set& second) 
 {
 	Set res;
 	res.arr = new int[size + second.size];
