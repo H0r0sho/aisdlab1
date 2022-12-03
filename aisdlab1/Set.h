@@ -30,6 +30,6 @@ public:
 
 	bool operator==(const Set& second);
 	bool operator!=(const Set& second);
-
 	friend std::ostream& operator<<(std::ostream& s, const Set& set);
+
 };
