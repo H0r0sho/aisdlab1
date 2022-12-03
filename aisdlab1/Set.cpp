@@ -1,5 +1,8 @@
 ﻿#include "Set.h"
 #include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
 
 Set::Set(const Set& second) 
 {
@@ -11,8 +14,6 @@ Set::~Set() {
 	if (!arr)
 		delete[] arr;
 }
-
-
 int Set::operator[](const int index) 
 {
 	if (!arr)
@@ -21,8 +22,6 @@ int Set::operator[](const int index)
 		throw "invalide index";
 	return arr[index];
 }
-
-
 Set Set::operator+(const Set& second) 
 {
 	Set res;
@@ -111,7 +110,72 @@ Set& Set::operator-(int num)
 	return *this;
 }
 
+Set& Set::operator+=(int num)
+{
+	if (!arr)
+	{
+		arr = new int[capacity];
+		arr[0] = num;
+		size++;
+	}
+	if (check_num(num) == false)
+	{
+		int* arr_n = new int[size + 1];
+		for (int i = 0; i < size; i++)
+		{
+			arr_n[i] = arr[i];
+		}
+		arr_n[size] = num;
+		delete[] arr;
+		arr = arr_n;
+		size++;
+	}
+	return *this;
+}
 
+Set& Set::operator-=(int num) {
+	if (check_num(num) == false)
+		throw "Set have not got this num";
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == num)
+		{
+			for (int j = i; j < size - 1; j++)
+			{
+				arr[j] = arr[j + 1];
+			}
+			size--;
+			break;
+		}
+	}
+	return *this;
+}
+
+Set Set::intersection(const Set& second)
+{
+	Set res;
+	res.arr = new int[size];
+	res.size = 0;
+	bool flag = false;
+	for (int i = 0; i < size; i++)
+	{
+		flag = false;
+		for (int j = 0; j < second.size; j++)
+		{
+			if (arr[i] == second.arr[j])
+			{
+				flag = true;
+				break;
+			}
+		}
+		if (flag == true)
+		{
+			res.arr[res.size] = arr[i];
+			res.size++;
+		}
+	}
+	return res;
+}
 
 bool Set::check_count(const Set& second) 
 {
@@ -162,7 +226,6 @@ bool Set::operator!=(const Set& second)
 		return false;
 	}
 }
-
 bool Set::check_num(int num)
 {
 	if (!arr)
