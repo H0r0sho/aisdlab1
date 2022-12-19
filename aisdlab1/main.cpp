@@ -8,7 +8,7 @@ int main()
 	int choise = 0;
 	do
 	{
-		int n;
+		int i;
 		system("cls");
 		std::cout << "1 - +(merge) for 1st set\n";
 		std::cout << "2 - +(merge) for 2nd set\n";
@@ -18,8 +18,6 @@ int main()
 		std::cout << "6 - +=(adding a number to a 2st set)\n";
 		std::cout << "7 - -=(removing a number from a 1st set)\n";
 		std::cout << "8 - -=(removing a number from a 2nd set)\n";
-		std::cout << "9- get element of 1st set by index";
-		std::cout << "10- get element of 2nd set by index";
 		std::cout << "9- get element of 1st set by index\n";
 		std::cout << "10- get element of 2nd set by index\n";
 		std::cout << "11 - calculating the intersection\n";
@@ -38,70 +36,94 @@ int main()
 		case(1):
 			fflush(stdin);
 			std::cout << "enter number: \n";
-			std::cin >> n;
-			set1 + n;
+			std::cin >> i;
+			set1 = set2 + i;
 			std::cout << "set1: " << set1 << "\n" << std::endl;
 			break;
 		case(2):
 			fflush(stdin);
 			std::cout << "enter number: \n";
-			std::cin >> n;
-			set2 + n;
+			std::cin >> i;
+			set2 = set1 + i;
 			std::cout << "set2: " << set2 << "\n" << std::endl;
 			break;
 		case(3):
 			fflush(stdin);
 			std::cout << "enter number: \n";
-			std::cin >> n;
-			set1 - n;
+			std::cin >> i;
+			set1 = set1 - i;
 			std::cout << "set1: " << set1 << "\n" << std::endl;
 			break;
 		case(4):
 			fflush(stdin);
 			std::cout << "enter number: \n";
-			std::cin >> n;
-			set2 - n;
+			std::cin >> i;
+			set2 = set2 - i;
 			std::cout << "set2: " << set2 << "\n" << std::endl;
 			break;
 		case(5):
-			fflush(stdin);
-			std::cout << "enter number: \n";
-			std::cin >> n;
-			set1 += n;
-			std::cout << "set1: " << set1 << "\n" << std::endl;
+			fflush(stdin);		
+				std::cout << "enter number: \n";
+				std::cin >> i;
+				set1 += i;
+				std::cout << "set1: " << set1 << "\n" << std::endl;		
 			break;
 		case(6):
 			fflush(stdin);
-			std::cout << "enter number: \n";
-			std::cin >> n;
-			set2 += n;
-			std::cout << "set2: " << set2 << "\n" << std::endl;
+				std::cout << "enter number: \n";
+				std::cin >> i;
+				set2 += i;
+				std::cout << "set2: " << set2 << "\n" << std::endl;
 			break;
 		case(7):
 			fflush(stdin);
-			std::cout << "enter number: \n";
-			std::cin >> n;
-			set1 -= n;
-			std::cout << "set1: " << set1 << "\n" << std::endl;
+			try {
+				std::cout << "enter number: \n";
+				std::cin >> i;
+				set1 -= i;
+				std::cout << "set1: " << set1 << "\n" << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		case(8):
 			fflush(stdin);
-			std::cout << "enter number: \n";
-			std::cin >> n;
-			set2 -= n;
-			std::cout << "set2: " << set2 << "\n" << std::endl;
+			try {
+				std::cout << "enter number: \n";
+				std::cin >> i;
+				set2 -= i;
+				std::cout << "set2: " << set2 << "\n" << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		case(9):
 			fflush(stdin);
-			std::cout << "enter index: \n";
-			std::cin >> n;
-			std::cout << "index set1: " << set1[n] << std::endl;
+		try {
+				std::cout << "enter index: \n";
+				std::cin >> i;
+				std::cout << "index set1: " << set1[i] << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		case(10):
 			fflush(stdin);
-			std::cout << "enter index: \n";
-			std::cin >> n;
-			std::cout << "index set2: " << set2[n] << std::endl;
+			try {
+				std::cout << "enter index: \n";
+				std::cin >> i;
+				std::cout << "index set2: " << set2[i] << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		case(11):
 			fflush(stdin);
@@ -109,15 +131,28 @@ int main()
 			break;
 		case(12):
 			fflush(stdin);
-			std::cout << "enter number for check: \n";
-			std::cin >> n;
-			std::cout << "check: " << set1.check_num(n) << std::endl;
+			try 
+			{
+				std::cout << "enter number for check: \n";
+				std::cin >> i;
+				std::cout << "check: " << set1.check_num(i) << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		case(13):
 			fflush(stdin);
-			std::cout << "enter number for check: \n";
-			std::cin >> n;
-			std::cout << "check: " << set1.check_num(n) << std::endl;
+			try {
+				std::cout << "enter number for check: \n";
+				std::cin >> i;
+				std::cout << "check: " << set1.check_num(i) << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		case(14):
 			fflush(stdin);
@@ -129,7 +164,13 @@ int main()
 			break;
 		case(16):
 			fflush(stdin);
-			std::cout << set1.check_count(set2) << std::endl;
+			try {
+				std::cout << set1.check_count(set2) << std::endl;
+			}
+			catch (std::exception& error)
+			{
+				std::cout << error.what() << std::endl;
+			}
 			break;
 		}
 		if (choise != 17)

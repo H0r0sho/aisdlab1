@@ -5,7 +5,6 @@
 class Set {
 	int* arr;
 	int size;
-	int capacity = 10;
 
 public:
 	Set() : arr(nullptr), size(0) {}
@@ -18,8 +17,8 @@ public:
 	Set operator+(const Set& second);
 	Set operator-(const Set& second);
 
-	Set& operator+(int num);
-	Set& operator-(int num);
+	Set operator+(int num);
+	Set operator-(int num);
 
 	Set& operator+=(int num);
 	Set& operator-=(int num);
